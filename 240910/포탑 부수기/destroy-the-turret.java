@@ -80,7 +80,7 @@ public class Main {
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < M; j++) {
 					if (map[i][j] > 0) {
-						list.add(new Node(i, j, map[i][j], 0));
+						list.add(new Node(i, j, map[i][j], attack[i][j]));
 					}
 				}
 			}
@@ -91,7 +91,6 @@ public class Main {
 			Node start = list.get(0);
 			
 			attack[start.x][start.y] = t;
-			start.attack = t;
 			
 			start.power += (N + M);
 			map[start.x][start.y] = start.power;
@@ -171,13 +170,13 @@ public class Main {
 		}
 		
 		// 역추적
+		map[end.x][end.y] -= start.power;
+		effect[end.x][end.y] = true;
+		
 		Node cur = route[end.x][end.y];
 		
 		int x = cur.x;
 		int y = cur.y;
-		
-		map[end.x][end.y] -= start.power;
-		effect[end.x][end.y] = true;
 		
 		while (!(x == start.x && y == start.y)) {
 			map[x][y] -= start.power / 2;
