@@ -91,11 +91,10 @@ public class Main {
 			Node start = list.get(0);
 			
 			attack[start.x][start.y] = t;
+			effect[start.x][start.y] = true;
 			
 			start.power += (N + M);
 			map[start.x][start.y] = start.power;
-			
-			effect[start.x][start.y] = true;
 			
 			// 공격력이 가장 높은 포탑 구하기
 			Node target = list.get(list.size() - 1);
@@ -120,15 +119,17 @@ public class Main {
 	
 	// 포탑이 남아있는지 확인
 	private static boolean isFinish() {
+		int cnt = 0;
+		
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
 				if (map[i][j] > 0) {
-					return false;
+					cnt++;
 				}
 			}
 		}
 		
-		return true;
+		return cnt == 1;
 	}
 	
 	// 레이저 공격
