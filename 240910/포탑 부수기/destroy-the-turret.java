@@ -102,7 +102,7 @@ public class Main {
 			Node target = list.get(list.size() - 1);
 			
 			if (!laser(start, target)) {
-				bomb(start);
+				bomb(start, target);
 			}
 			
 			add();
@@ -192,12 +192,15 @@ public class Main {
 	}
 	
 	// 포탄 공격
-	private static void bomb(Node start) {
+	private static void bomb(Node start, Node end) {
+		map[end.x][end.y] -= start.power;
+		effect[end.x][end.y] = true;
+		
 		for (int i = 0; i < 8; i++) {
-			int nx = (N + start.x + dx[i]) % N;
-			int ny = (M + start.y + dy[i]) % M;
+			int nx = (N + end.x + dx[i]) % N;
+			int ny = (M + end.y + dy[i]) % M;
 			
-			if (map[nx][ny] <= 0) {
+			if (map[nx][ny] <= 0 || (nx == start.x && ny == start.y)) {
 				continue;
 			}
 			
