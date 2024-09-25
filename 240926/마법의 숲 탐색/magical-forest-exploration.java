@@ -54,7 +54,7 @@ public class Main {
 			move(id, x + 1, y, d);
 		} else if (checkMove(x + 1, y - 1)) {
 			// 서쪽 아래로 내려갈 수 있는 경우 -> 반시계 방향으로 회전
-			move(id, x + 1, y - 1, (d - 1) % 4);
+			move(id, x + 1, y - 1, (d + 3) % 4);
 		} else if (checkMove(x + 1, y + 1)) {
 			// 동쪽 아래로 내려갈 수 있는 경우 -> 시계 방향으로 회전
 			move(id, x + 1, y + 1, (d + 1) % 4);
@@ -86,8 +86,9 @@ public class Main {
 
 	// 해당 칸으로 이동할 수 있는지 확인 (정령의 위치)
 	private static boolean checkMove(int x, int y) {
-		// 일단 isMove가 true이면 정령 위에 칸은 무조건 위치 가능한 것
+		// 일단 isMove가 true이면 정령 윗칸은 무조건 위치 가능한 것
 		// 양 옆과 아래로 갔을 때 다른 골렘이 있는지만 확인하면 됨
+		// move함수에서 현재 위치에서 다음 칸으로 내려갈 수 있는지 확인하고 내리기 때문에 현재 + 다음 위치 둘 다 확인
 		return isMove(x, y) && map[x - 1][y - 1] == 0 && map[x - 1][y] == 0 && map[x - 1][y + 1] == 0
 				&& map[x][y - 1] == 0 && map[x][y] == 0 && map[x][y + 1] == 0 && map[x + 1][y] == 0;
 	}
