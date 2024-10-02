@@ -196,7 +196,7 @@ public class Main {
 	
 	// 도망자 잡기
 	private static int catchHide() {
-		int dir = getSeekDir();
+		int dir = getSeekDir(); // 이동시킨 후에 다시 방향을 구해야 현재 술래가 바라보는 방향을 얻을 수 있음
 		
 		int result = 0;
 		
