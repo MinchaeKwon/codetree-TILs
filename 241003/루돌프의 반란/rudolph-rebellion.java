@@ -151,8 +151,7 @@ public class Main {
 				continue;
 			}
 			
-//			int dist = getDist(santa[i].x, santa[i].y);
-			int dist = (int) (Math.pow(rx - santa[i].x, 2) + Math.pow(ry - santa[i].y, 2));
+			int dist = getDist(santa[i].x, santa[i].y);
 			
 			list.add(new Node(i, santa[i].x, santa[i].y, dist));
 		}
